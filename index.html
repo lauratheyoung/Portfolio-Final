@@ -12,66 +12,65 @@
         <h1 id="welcome-message-text">Welcome to SkipMe</h1>
     </div>
 
-    <div class="btn-main" id="add-workout">
-        <button type="button" id="add-workout-btn" onclick="addWorkout()">Add Workout</button> <!--defining type to override submit behaviour -->
-        <form action="" method="" class="user-form" id="user-workout-form">
-            <ul>
-                <li>
-                    <label for="date" id="date-label">Date:</label>
-                    <input type="date" id="date-input" name="user-workout-date"/>
-                </li>
-                <li>
-                    <label for="ime" id="start-time-label">Workout Start Time:</label>
-                    <input type="time" id="start-time-input" name="user-workout-start-time"/>
-                </li>
-                <li>
-                    <label for="time" id="end-time-label">Workout End Time:</label>
-                    <input type="time" id="end-time-input" name="user-workout-end-time"/>
-                </li>
-                <li>
-                    <label for="difficulty" id="difficulty-label"> 
-                        <img id="scale" src="">
-                        <input type="radio" id="easy-input" name="user-workout-difficulty"/>
-                        <img id="easy-icon" src="">
-                        <input type="radio" id="moderate-input" name="user-workout-difficulty"/>
-                        <img id="moderate-icon" src="">
-                        <input type="radio" id="difficult-input" name="user-workout-difficulty"/>
-                        <img id="difficult-icon" src="">
-                    </label>
-                   
-                </li>
-                <li>
-                    <label for="types" id="jump-type-label">Jump Type:</label>
-                    <select name="user-jump-types" id="types" multiple>
-                        <option value="Single-Unders">Single-Unders</option>
-                        <option value="Double-Unders">Double-Unders</option>
-                        <option value="Crosses">Crosses</option>
-                        <option value="Single-Leg">Single-Leg</option>
-                        <option value="Alternative Single Leg">Alternative Single Leg</option>
-                        <option value="High Knees">High Knees</option>
-                        <option value="Side Swing">Side Swing</option>
-                    <!-- <input type="checkbox" id="jump-type-multi-input" name="workout-jump-type"/> -->
-                </li>
-            </ul>
+    <div id="buttonContainer">
+        <button class="mainButton" id="addWorkout">Add Workout</button>
+        <button class="mainButton" id="workoutHistory">Workout History</button>
+    </div>
+    <!-- creating workable container for css styling for the main page buttons -->
+
+    <div id="workoutFormContainer" style="display: none;">
+        <!-- creating a form container with no display until js. functionality is implemented -->
+       
+        <form id="userWorkoutForm">
+            <label for="date" id="date-label">Date:</label>
+            <input type="date" id="date-input" name="user-workout-date"/>
+            
+            <label for="sTime" id="start-time-label">Workout Start Time:</label>
+            <input type="time" id="start-time-input" name="user-workout-start-time"/>
+
+            <label for="eTime" id="end-time-label">Workout End Time:</label>
+            <input type="time" id="end-time-input" name="user-workout-end-time"/>
+
+            <label for="difficulty" id="difficulty-label"> 
+                <img id="scale" src="">
+                <input type="radio" id="easy-input" name="user-workout-difficulty"/>
+                <img id="easy-icon" src="">
+                <input type="radio" id="moderate-input" name="user-workout-difficulty"/>
+                <img id="moderate-icon" src="">
+                <input type="radio" id="difficult-input" name="user-workout-difficulty"/>
+                <img id="difficult-icon" src="">
+            </label>
+
+            <label for="types" id="jump-type-label">Jump Type:
+                    
+                <select name="user-jump-types" id="types" multiple>
+                    <option value="Single-Unders">Single-Unders</option>
+                    <option value="Double-Unders">Double-Unders</option>
+                    <option value="Crosses">Crosses</option>
+                    <option value="Single-Leg">Single-Leg</option>
+                    <option value="Alternative Single Leg">Alternative Single Leg</option>
+                    <option value="High Knees">High Knees</option>
+                    <option value="Side Swing">Side Swing</option>
+                 </select>
+            
+            </label>
+            <!-- adding various data types to the form: data, time, category etc. & save entry button to the form -->
+
+            <button type= "submit" id="formSave">Save Workout</button>
         </form>
-        <button type="button" id="form-exit-btn">
-            <!-- <img>add x-icon img</img> -->
-        </button>
-        <button type="submit" id="submit-form-btn" onclick="submitForm()">Submit</button>>
-    </div>
-    <div class="btn-main" id="workout-history">
-        <button id="workout-history-btn" onclick="showWorkoutHistory()">Workout History</button>
-    </div>
-    <div class="" id="streaks">
-        <img id= "streaks-icon" src="images/streaks DECO2017.jpg"></img>
-    </div>
-    <div class="" id="character">
-        <img src="images/character-icon.jpg"></img>
-    </div>
-    <div class="" id="logo">
-        <img src="images/logo.jpg">
+
     </div>
 
-    <script href="scripts/script.js"></script>
+    <div class="" id="streaksContainer">
+        <img id= "streaksIcon" src="assets/streaks DECO2017.jpg"></img>
+    </div>
 
+    <div id="characterContainer">
+        <img id= "character" src="assets/character-icon.jpg"></img>
+    </div>
+
+    <div id="logoContainer">
+        <img id= "logo" src="assets/logo.jpg">
+    </div>
+    <!-- need to add high resolution images for the final -->
 </body>

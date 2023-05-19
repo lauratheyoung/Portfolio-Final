@@ -1,0 +1,123 @@
+@import url('https://fonts.cdnfonts.com/css/milky-nice');
+
+
+.welcome-message-main{
+    border: 2px solid red;
+    width: 25vw;
+    height: 10vh;
+}
+.welcome-message-main h1{
+    font-family: 'Milky Nice', sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+#buttonContainer{
+    position: absolute;
+    border: 2px solid cyan;
+    width: 30vw;
+    height: 60vh;
+    display: block;
+    left: 10%;
+    top: 25%;
+
+}
+
+.mainButton{
+    height: 25vh;
+    width: 30vw;
+    padding: 0% 10%;
+    border-radius: 30px;
+    font-family: 'Milky Nice', sans-serif;
+    font-size: 2rem;
+    color: white;
+}
+
+#addWorkout{
+    position: relative;
+    top: 7.5%;
+    background-color: #FF9A28;
+    filter: drop-shadow(0 0.2rem 0.4rem #160c01)
+}
+
+#workoutHistory{
+    position: relative;
+    top: 15%;
+    background-color: #A862EF;
+    filter: drop-shadow(0 0.2rem 0.4rem #10031c)
+    
+}
+
+#streaksContainer{
+    position: absolute;
+    border: 2px solid orchid;
+    width: 15vw;
+    height: 30vh;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+
+
+}
+
+#streaksIcon{
+    position: relative;
+    top: 3%;
+    left: 11%;
+    z-index: 1;
+
+}
+
+
+#characterContainer{
+    border: 2px solid slateblue;
+    width: 35vw;
+    height: 110vh;
+    position: absolute;
+    right: 0;
+    top: 0;
+    
+
+}
+
+#character{
+    width: 100%;
+    right: 0;
+    position: relative;
+    /* animation: bounce 0.5s infinite;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0.6s; */
+}
+/* bouncing animation idea needs to be improved and refined also need to add a stop */
+/* @keyframes bounce{
+    10%{
+        height: 100%;
+        width: 100%;
+    }
+    30%{
+        height: 100%;
+        width: 100%;
+    }
+    50%{
+        height: 100%;
+        width: 100%
+        transform: translateY(40%);
+    }
+    
+    75%{
+        height: 100%;
+        width: 100%;
+    }
+    
+    100%{
+        transform: translateY(0);
+    }
+} */
+
+
+#logoContainer{
+    border: 2px solid cadetblue;
+    width: 10vw;
+    height: 20vh;
+
+}
