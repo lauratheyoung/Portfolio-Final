@@ -14,59 +14,84 @@
 
     <div id="buttonContainer">
         <button class="mainButton" id="addWorkout">Add Workout</button>
+        <!-- need to link form to this button -->
         <button class="mainButton" id="workoutHistory">Workout History</button>
+        <!-- js. card display of all logged workout data-->
+        <!-- potentially create an error message for when users have no entries logged-->
     </div>
     <!-- creating workable container for css styling for the main page buttons -->
 
-    <div id="workoutFormContainer" style="display: none;">
+    <div class="form" id="workoutFormContainer" style="display: none">
+        <!-- style="display: none" -->
         <!-- creating a form container with no display until js. functionality is implemented -->
-       
-        <form id="userWorkoutForm">
-            <label for="date" id="date-label">Date:</label>
-            <input type="date" id="date-input" name="user-workout-date"/>
+       <div class="form_contents">
             
-            <label for="sTime" id="start-time-label">Workout Start Time:</label>
-            <input type="time" id="start-time-input" name="user-workout-start-time"/>
+            <div class="form_close-bar"><span>X</span></div>
+            <form id="userWorkoutForm">
 
-            <label for="eTime" id="end-time-label">Workout End Time:</label>
-            <input type="time" id="end-time-input" name="user-workout-end-time"/>
+                <label for="date" id="date-label">Date:</label>
+                <input type="date" id="date-input" name="user-workout-date"/>
+                <!-- gathering date inputs for user workout entries -->
+                
+                <label for="sTime" id="start-time-label">Workout Start Time:</label>
+                <input type="time" id="start-time-input" name="user-workout-start-time"/>
+                <!-- gathering start-time data for workout entries-->
+                <!-- js. custom function to calculate workout duration -->
 
-            <label for="difficulty" id="difficulty-label"> 
-                <img id="scale" src="">
-                <input type="radio" id="easy-input" name="user-workout-difficulty"/>
-                <img id="easy-icon" src="">
-                <input type="radio" id="moderate-input" name="user-workout-difficulty"/>
-                <img id="moderate-icon" src="">
-                <input type="radio" id="difficult-input" name="user-workout-difficulty"/>
-                <img id="difficult-icon" src="">
-            </label>
+                <label for="eTime" id="end-time-label">Workout End Time:</label>
+                <input type="time" id="end-time-input" name="user-workout-end-time"/>
+                <!-- gathering end-time data for workout entries-->
+                <!-- js. custom function to calculate workout duration -->
 
-            <label for="types" id="jump-type-label">Jump Type:
-                    
-                <select name="user-jump-types" id="types" multiple>
-                    <option value="Single-Unders">Single-Unders</option>
-                    <option value="Double-Unders">Double-Unders</option>
-                    <option value="Crosses">Crosses</option>
-                    <option value="Single-Leg">Single-Leg</option>
-                    <option value="Alternative Single Leg">Alternative Single Leg</option>
-                    <option value="High Knees">High Knees</option>
-                    <option value="Side Swing">Side Swing</option>
-                 </select>
+                <label for="difficulty" id="difficulty-label"> 
+                    <img id="scale" src="">
+                    <input type="radio" id="easy-input" name="user-workout-difficulty"/>
+                    <img id="easy-icon" src="">
+                    <input type="radio" id="moderate-input" name="user-workout-difficulty"/>
+                    <img id="moderate-icon" src="">
+                    <input type="radio" id="difficult-input" name="user-workout-difficulty"/>
+                    <img id="difficult-icon" src="">
+                </label>
+                <!-- building a graphical scale input for users to measure workout difficulty -->
+                <!-- in js. custom function will be build using this data to output calories burnt -->
+
+                <label for="types" id="jump-type-label">Jump Type:
+    
+                    <select name="user-jump-types" id="types" multiple>
+                        <option value="Single-Unders">Single-Unders</option>
+                        <option value="Double-Unders">Double-Unders</option>
+                        <option value="Crosses">Crosses</option>
+                        <option value="Single-Leg">Single-Leg</option>
+                        <option value="Alternative Single Leg">Alternative Single Leg</option>
+                        <option value="High Knees">High Knees</option>
+                        <option value="Side Swing">Side Swing</option>
+                    </select>
+                <!-- building a select drop-down menu for users to input used jump styles -->
+                <!-- in js. custom function will be build using this data to output calories burnt -->
             
-            </label>
+                </label>
             <!-- adding various data types to the form: data, time, category etc. & save entry button to the form -->
 
-            <button type= "submit" id="formSave">Save Workout</button>
-        </form>
-
+        
+                <button type= "submit" id="formSave">Save Workout</button>
+        
+            </form>
+        </div>
+    </div>
+    
+    <div id="workoutHistory">
+        <!-- data outputted from form -->
+        <!-- dynamicaaly generated -->
     </div>
 
-    <div class="" id="streaksContainer">
+    <div class="" id="streaksContainer" script="">
         <img id= "streaksIcon" src="assets/streaks DECO2017.jpg"></img>
+        <!-- custom function that counts consecutive workout entries and outputs an integer in the home-page streaks icon-->
     </div>
 
     <div id="characterContainer">
         <img id= "character" src="assets/character-icon.jpg"></img>
+        <!-- a animated character jumping -->
     </div>
 
     <div id="logoContainer">
