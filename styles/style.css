@@ -187,17 +187,103 @@ textarea{
 }
  */
 
-#workoutFormContainer {
+/* #workoutFormContainer {
     display: none;
     background-color: #FF9A28;
     position: relative;
     border: 2px solid brown;
 
     /* display features/styling */
-}
 
-.form_contents{
-    /* display features/styling */
+
+/* .form_contents{
+    /* display features/styling 
     background-color: white;
     position: relative;
+} */
+
+*,*::after, *::before{
+    box-sizing: border-box;
+
+}
+
+.form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(0);
+    transition: 200ms ease-in-out;
+    border: 1px solid black;
+    border-radius: 30px;
+    z-index: 30;
+    background-color:#ffff;
+    width: 50vw;
+    height: 50vh;
+    max-width: 80%;
+
+
+}
+
+.form.hidden{
+    display: none;
+}
+
+.form.active{
+    display: block;
+    transform: translate(-50%,-50%) scale(1);
+}
+
+.form-header{
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 10px solid #FF9A28;
+}
+
+.form-header .title{
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.form-header .close-button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+#userWorkoutForm {
+    padding: 10px 15px;
+}
+
+#overlay{
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.5);
+    transition: 200ms ease-in-out;
+    z-index: 29;
+    pointer-events: none; 
+    /* removes functionality to rest of page */
+}
+
+#overlay.active{
+    opacity: 1;
+    pointer-events: all;
+    /* toggle overlay */
+
+
+}
+.form.active {
+    display: flex;
+  }
+  
+.overlay.active {
+    display: block;
 }

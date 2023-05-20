@@ -13,7 +13,8 @@
     </div>
 
     <div id="buttonContainer">
-        <button class="mainButton" id="addWorkout">Add Workout</button>
+        <button data-form-target="#form" class="mainButton" id="addWorkout">Add Workout</button>
+        <!-- selector that points to the viewport we want to open -->
         <!-- need to link form to this button -->
         <button class="mainButton" id="workoutHistory">Workout History</button>
         <!-- js. card display of all logged workout data-->
@@ -21,12 +22,16 @@
     </div>
     <!-- creating workable container for css styling for the main page buttons -->
 
-    <div class="form" id="workoutFormContainer" style="display: none">
+    <div class="form hidden" id="form">
         <!-- style="display: none" -->
         <!-- creating a form container with no display until js. functionality is implemented -->
        <div class="form_contents">
             
-            <div class="form_close-bar"><span>X</span></div>
+            <div  data- class="form-header">
+                <div class="form-title">Add a Workout</div>
+                <button date-close-button class="close-button">&times;</button>
+            </div>
+
             <form id="userWorkoutForm">
 
                 <label for="date" id="date-label">Date:</label>
@@ -76,8 +81,11 @@
                 <button type= "submit" id="formSave">Save Workout</button>
         
             </form>
+            
         </div>
     </div>
+    
+    <div class="hidden" id="overlay"></div>
     
     <div id="workoutHistory">
         <!-- data outputted from form -->
@@ -99,3 +107,4 @@
     </div>
     <!-- need to add high resolution images for the final -->
 </body>
+<script src="scripts/script.js"></script>
