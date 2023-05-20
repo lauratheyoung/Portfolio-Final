@@ -25,43 +25,43 @@
     <div class="form hidden" id="form">
         <!-- style="display: none" -->
         <!-- creating a form container with no display until js. functionality is implemented -->
-       <div class="form_contents">
-            
-            <div  data- class="form-header">
+        <div class="form_contents">
+            <div class="form-header">
                 <div class="form-title">Add a Workout</div>
                 <button date-close-button class="close-button">&times;</button>
             </div>
-
+        
             <form id="userWorkoutForm">
-
-                <label for="date" id="date-label">Date:</label>
-                <input type="date" id="date-input" name="user-workout-date"/>
-                <!-- gathering date inputs for user workout entries -->
-                
-                <label for="sTime" id="start-time-label">Workout Start Time:</label>
-                <input type="time" id="start-time-input" name="user-workout-start-time"/>
-                <!-- gathering start-time data for workout entries-->
-                <!-- js. custom function to calculate workout duration -->
-
-                <label for="eTime" id="end-time-label">Workout End Time:</label>
-                <input type="time" id="end-time-input" name="user-workout-end-time"/>
-                <!-- gathering end-time data for workout entries-->
-                <!-- js. custom function to calculate workout duration -->
-
-                <label for="difficulty" id="difficulty-label"> 
-                    <img id="scale" src="">
-                    <input type="radio" id="easy-input" name="user-workout-difficulty"/>
-                    <img id="easy-icon" src="">
-                    <input type="radio" id="moderate-input" name="user-workout-difficulty"/>
-                    <img id="moderate-icon" src="">
-                    <input type="radio" id="difficult-input" name="user-workout-difficulty"/>
-                    <img id="difficult-icon" src="">
-                </label>
-                <!-- building a graphical scale input for users to measure workout difficulty -->
-                <!-- in js. custom function will be build using this data to output calories burnt -->
-
-                <label for="types" id="jump-type-label">Jump Type:
-    
+        
+                <div class="form-group">
+                    <label for="date" id="date-label">Date:</label>
+                    <input type="date" id="date-input" name="user-workout-date" />
+                </div>
+        
+                <div class="form-group">
+                    <label for="sTime" id="start-time-label">Workout Start Time:</label>
+                    <input type="time" id="start-time-input" name="user-workout-start-time" />
+                </div>
+        
+                <div class="form-group">
+                    <label for="eTime" id="end-time-label">Workout End Time:</label>
+                    <input type="time" id="end-time-input" name="user-workout-end-time" />
+                </div>
+        
+                <div class="form-group">
+                    <label for="difficulty" id="difficulty-label">Difficulty:</label>
+                    <div class="difficulty-options">
+                        <input type="radio" id="easy-input" name="user-workout-difficulty" />
+                        <label for="easy-input">Easy</label>
+                        <input type="radio" id="moderate-input" name="user-workout-difficulty" />
+                        <label for="moderate-input">Moderate</label>
+                        <input type="radio" id="difficult-input" name="user-workout-difficulty" />
+                        <label for="difficult-input">Difficult</label>
+                    </div>
+                </div>
+        
+                <div class="form-group">
+                    <label for="types" id="jump-type-label">Jump Type:</label>
                     <select name="user-jump-types" id="types" multiple>
                         <option value="Single-Unders">Single-Unders</option>
                         <option value="Double-Unders">Double-Unders</option>
@@ -71,18 +71,13 @@
                         <option value="High Knees">High Knees</option>
                         <option value="Side Swing">Side Swing</option>
                     </select>
-                <!-- building a select drop-down menu for users to input used jump styles -->
-                <!-- in js. custom function will be build using this data to output calories burnt -->
-            
-                </label>
-            <!-- adding various data types to the form: data, time, category etc. & save entry button to the form -->
-
+                </div>
         
-                <button type= "submit" id="formSave">Save Workout</button>
+                <button type="submit" id="formSave">Save Workout</button>
         
             </form>
-            
         </div>
+        
     </div>
     
     <div class="hidden" id="overlay"></div>

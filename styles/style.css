@@ -218,7 +218,7 @@ textarea{
     z-index: 30;
     background-color:#ffff;
     width: 50vw;
-    height: 50vh;
+    height: 70vh;
     max-width: 80%;
 
 
@@ -231,6 +231,7 @@ textarea{
 .form.active{
     display: block;
     transform: translate(-50%,-50%) scale(1);
+    
 }
 
 .form-header{
@@ -241,9 +242,10 @@ textarea{
     border-bottom: 10px solid #FF9A28;
 }
 
-.form-header .title{
-    font-size: 1.25rem;
-    font-weight: bold;
+.form-header .form-title{
+    font-size: 1.4rem;
+    font-family: 'Milky Nice', sans-serif;
+
 }
 
 .form-header .close-button {
@@ -256,6 +258,10 @@ textarea{
 }
 
 #userWorkoutForm {
+    padding: 10px 15px;
+
+}
+#formContents{
     padding: 10px 15px;
 }
 
@@ -287,3 +293,43 @@ textarea{
 .overlay.active {
     display: block;
 }
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.difficulty-options {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+label {
+    font-weight: bold;
+    font-family: 'Milky Nice', sans-serif;
+    font-size: 1.1rem;
+    padding: .5rem 1.1rem;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 5.75rem;
+    margin-top: 1rem;
+}
+
+#formSave{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 8%;
+    right: 5%;
+    border-radius: 5px;
+    font-family: 'Milky Nice', sans-serif;
+    font-size: 1.1rem;
+    background-color: #EECE5C;
+}
+
