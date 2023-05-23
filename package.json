@@ -1,0 +1,22 @@
+{
+  "name": "skipme",
+  "version": "0.0.1",
+  "description": "This is the final project server for DECO2017",
+  "main": "server.js",
+  "scripts": {
+    "prestart": "parcel build ./public/index.html",
+    "dev": "parcel serve ./public/index.html",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "node",
+    "server",
+    "HTTP"
+  ],
+  "author": "Laura Young",
+  "license": "MIT",
+
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
