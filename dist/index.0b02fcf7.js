@@ -1,0 +1,2 @@
+const addWorkoutButton=document.querySelector("#addWorkout"),form=document.querySelector("#form"),overlay=document.getElementById("overlay"),closeButton=document.querySelector(".form-header .close-button");function openForm(){form.classList.add("active"),overlay.classList.add("active")}function closeForm(){form.classList.remove("active"),overlay.classList.remove("active")}addWorkoutButton.addEventListener("click",(()=>{openForm()})),closeButton.addEventListener("click",(()=>{closeForm()}));
+//# sourceMappingURL=index.0b02fcf7.js.map
