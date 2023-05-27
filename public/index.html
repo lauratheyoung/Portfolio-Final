@@ -28,7 +28,7 @@
         <div class="form_contents">
             <div class="form-header">
                 <div class="form-title">Add a Workout</div>
-                <button date-close-button class="close-button">&times;</button>
+                <button class="close-button">&times;</button>
             </div>
         
             <form id="userWorkoutForm">
@@ -51,11 +51,11 @@
                 <div class="form-group">
                     <label for="difficulty" id="difficulty-label">Difficulty:</label>
                     <div id= "difficulty-level-input" class="difficulty-options">
-                        <input type="radio" id="easy-input" name="user-workout-difficulty-easy" />
+                        <input type="radio" id="easy-input" name="user-workout-difficulty" value = "Easy"/>
                         <label for="easy-input">Easy</label>
-                        <input type="radio" id="moderate-input" name="user-workout-difficulty-moderate" />
+                        <input type="radio" id="moderate-input" name="user-workout-difficulty" value = "Moderate" />
                         <label for="moderate-input">Moderate</label>
-                        <input type="radio" id="difficult-input" name="user-workout-difficulty-difficult" />
+                        <input type="radio" id="difficult-input" name="user-workout-difficulty" value = "Difficult"/>
                         <label for="difficult-input">Difficult</label>
                     </div>
                 </div>
@@ -80,11 +80,19 @@
         
     </div>
     
-    <div class="hidden" id="overlay"></div>
+    <div id="overlay"></div>
     
-    <div id="workoutHistory">
+    <div class = "workoutHistoryLayout" id="workoutHistoryContainer">
+        <div class="close-button" id="workout-history-close-container">
+            <button id = "close-button" >&times;</button>
+        </div>
+        <div id="entryCard"> 
+            <!-- <div class= "cardContent" id="cardContent"></div> -->
+        </div>
         <!-- data outputted from form -->
-        <!-- dynamicaaly generated -->
+        <!-- dynamically generated -->
+
+
     </div>
 
     <div class="" id="streaksContainer" script="">

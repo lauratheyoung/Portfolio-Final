@@ -144,64 +144,6 @@
     /* image itself is off-center need to import better quality graphics */
 }
 
-/* .form{
-    background-color: white ;
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-
-.form_contents{
-    background-color: white;
-    padding: 2rem 4rem;
-}
-input[type= "date"],
-input[type="time"],
-input[type="radio"],
-input[type="select"],
-textarea{
-    width: 100%;
-    padding: 0.5rem;
-}
-.form_close-bar{
-    display: flex;
-    justify-content: flex-end;
-    margin-right: -2rem;
-    margin-top: -1rem;
-    cursor: pointer;
-
-}
-
-.button:hover{
-    background-color: red;
-}
-
-.form-h{
-    display: none;
-}
- */
-
-/* #workoutFormContainer {
-    display: none;
-    background-color: #FF9A28;
-    position: relative;
-    border: 2px solid brown;
-
-    /* display features/styling */
-
-
-/* .form_contents{
-    /* display features/styling 
-    background-color: white;
-    position: relative;
-} */
-
 *,*::after, *::before{
     box-sizing: border-box;
 
@@ -266,7 +208,7 @@ textarea{
 }
 
 #overlay{
-    position: fixed;
+    position: absolute;
     opacity: 0;
     top: 0;
     left: 0;
@@ -274,7 +216,7 @@ textarea{
     bottom: 0;
     background-color: rgba(0,0,0,.5);
     transition: 200ms ease-in-out;
-    z-index: 29;
+    z-index: 10;
     pointer-events: none; 
     /* removes functionality to rest of page */
 }
@@ -288,7 +230,7 @@ textarea{
 }
 .form.active {
     display: flex;
-  }
+}
   
 .overlay.active {
     display: block;
@@ -319,7 +261,7 @@ input[type="checkbox"] {
     margin-top: 1rem;
 }
 
-#formSave{
+#formSave {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -332,4 +274,40 @@ input[type="checkbox"] {
     font-size: 1.1rem;
     background-color: #EECE5C;
 }
+
+
+#workoutHistoryContainer{
+    display: grid;
+    position: relative;
+    /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 5%; */
+}
+
+.entryCard {
+    background-color: #E0C1FF;
+    position: relative;
+    font-family: 'Milky Nice', sans-serif;
+    font-size: 0.68rem;
+    width: 12rem;
+    height: 18rem;
+    margin: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 20;
+}
+  
+.entryCard > div {
+    background-color: white;
+    width: 100%;
+    padding: 10px;
+}
+
+.workoutHistoryContainer.active{
+    display: block;
+}
+  
+.workoutHistoryContainer {
+    display: none;
+}
+  
 
