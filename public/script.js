@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const addWorkoutButton = document.querySelector('#addWorkout');
   const form = document.querySelector('#form');
   const overlay = document.getElementById('overlay');
-  const closeButton = document.querySelector('.form-header .close-button');
   const workoutHistoryButton = document.querySelector('#workoutHistory');
   const workoutCardContainer = document.querySelector("#entryCard");
   const workout = [];
@@ -25,14 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('workoutData', JSON.stringify(workout));
   };
 
-  const closeWorkoutHistory = () => {
-    overlay.classList.remove('active');
-    workoutCardContainer.innerHTML = '';
-    const cardCloseButton = document.querySelector('.workoutHistoryLayout .close-button');
-    if (cardCloseButton) {
-      cardCloseButton.remove();
-    }
-  };
+  
 
   const createWorkoutElement = ({ workoutDate, startTime, endTime, easy, moderate, difficult, style }) => {
     // Create card container
@@ -83,8 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
     workoutCardContainer.style.justifyContent = "space-between";
   };
 
-  // this checks and returns the associated workout difficulty-level of entries
-
+  // this checks and returns the associated workout difficulty-level of each workout entry
   const getDifficultyLevel = (easy, moderate, difficult) => {
     if (easy) {
       return 'Easy';
@@ -97,37 +88,67 @@ document.addEventListener('DOMContentLoaded', () => {
     return 'Unknown';
   };
 
-  // close button for workout history
-  const cardCloseButton = document.createElement('button');
-  cardCloseButton.classList.add('close-button');
-  cardCloseButton.innerHTML = '&times;';
 
-  // event listener for close button
-  cardCloseButton.addEventListener('click', () => {
-    closeWorkoutHistory();
-  });
+  // open workout history functionality
+  let formCloseButton = null;
+  let workoutHistoryCloseButton = null;
+
+  const openForm = () => {
+    form.classList.add('active');
+    overlay.classList.add('active');
+    if (!formCloseButton) {
+      formCloseButton = document.createElement('button');
+      formCloseButton.classList.add('close-button');
+      formCloseButton.innerHTML = '&times;';
+      formCloseButton.addEventListener('click', closeForm);
+      overlay.appendChild(formCloseButton);
+    }
+  };
+
+  // open workout history functionality
+  const openWorkoutHistory = () => {
+    const storedWorkouts = localStorage.getItem('workoutData');
+    if (storedWorkouts) {
+      const workouts = JSON.parse(storedWorkouts);
+      workoutCardContainer.innerHTML = '';
+      workouts.forEach((entry) => {
+        createWorkoutElement(entry);
+      });
+      overlay.classList.add('active');
+      if (!workoutHistoryCloseButton) {
+        workoutHistoryCloseButton = document.createElement('button');
+        workoutHistoryCloseButton.classList.add('close-button');
+        workoutHistoryCloseButton.innerHTML = '&times;';
+        workoutHistoryCloseButton.addEventListener('click', closeWorkoutHistory);
+        overlay.appendChild(workoutHistoryCloseButton);
+      }
+    }
+  };
+
+  const closeForm = () => {
+    overlay.classList.remove('active');
+    form.classList.remove('active');
+    if (formCloseButton) {
+      formCloseButton.remove();
+      formCloseButton = null;
+    }
+  };
+
+  const closeWorkoutHistory = () => {
+    overlay.classList.remove('active');
+    workoutCardContainer.innerHTML = '';
+    if (workoutHistoryCloseButton) {
+      workoutHistoryCloseButton.remove();
+      workoutHistoryCloseButton = null;
+    }
+  };
+
+  
 
   // add workout button functionality
   addWorkoutButton.addEventListener('click', () => {
     openForm();
   });
-
-  // close button functionality
-  closeButton.addEventListener('click', () => {
-    closeForm();
-  });
-
-  // opening the form
-  function openForm() {
-    form.classList.add('active');
-    overlay.classList.add('active');
-  }
-
-  // closing the form
-  function closeForm() {
-    form.classList.remove('active');
-    overlay.classList.remove('active');
-  }
 
   // form submission
   form.addEventListener('submit', (e) => {
@@ -142,20 +163,17 @@ document.addEventListener('DOMContentLoaded', () => {
     addWorkoutEntry(workoutDate, startTime, endTime, easy, moderate, difficult, style);
     createWorkoutElement({ workoutDate, startTime, endTime, easy, moderate, difficult, style });
     closeForm();
-    workoutForm.reset();
+    form.reset();
   });
 
   // display workout history
   workoutHistoryButton.addEventListener('click', () => {
-    const storedWorkouts = localStorage.getItem('workoutData');
-    if (storedWorkouts) {
-      const workouts = JSON.parse(storedWorkouts);
-      workoutCardContainer.innerHTML = '';
-      workouts.forEach((entry) => {
-        createWorkoutElement(entry);
-      });
-      overlay.classList.add('active');
-      overlay.appendChild(cardCloseButton);
-    }
+    openWorkoutHistory();
   });
 });
+
+
+
+
+
+

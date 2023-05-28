@@ -190,14 +190,14 @@
 
 }
 
-.form-header .close-button {
+/* .form-header .close-button {
     cursor: pointer;
     border: none;
     outline: none;
     background: none;
     font-size: 1.25rem;
     font-weight: bold;
-}
+} */
 
 #userWorkoutForm {
     padding: 10px 15px;
@@ -228,8 +228,13 @@
 
 
 }
-.form.active {
+#form.active {
     display: flex;
+    opacity: 100%;
+}
+
+#form {
+    opacity: 0;
 }
   
 .overlay.active {
