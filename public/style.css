@@ -242,15 +242,14 @@
 }
 
 .form-group {
-    display: flex;
+    display: inline-flexbox;
     flex-direction: column;
-    margin-bottom: 10px;
+    margin-bottom: 2%;
 }
 
 .difficulty-options {
-    display: flex;
-    gap: 10px;
-    margin-top: 5px;
+    display: inline-flexbox;
+    margin-top: 1%;
 }
 
 label {
@@ -262,22 +261,25 @@ label {
 
 input[type="radio"],
 input[type="checkbox"] {
-    margin-right: 5.75rem;
     margin-top: 1rem;
 }
+
+
 
 #formSave {
     position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 20%;
-    height: 8%;
-    right: 5%;
+    width: 25%;
+    height: 10%;
+    margin-top: 10%;
+    margin-left: 33%;
     border-radius: 5px;
     font-family: 'Milky Nice', sans-serif;
     font-size: 1.1rem;
     background-color: #EECE5C;
+
 }
 
 
@@ -316,3 +318,34 @@ input[type="checkbox"] {
 }
   
 
+.congrats-popup {
+    opacity: 0;
+   
+}
+  
+.congrats-popup.active h2, h3 {
+    background-color: white;
+    color: black;
+    font-family: 'Milky Nice', sans-serif;
+}
+  
+.congrats-popup.active img {
+    width: 45%;
+    height: 20%;
+}
+  
+.congrats-popup.active {
+    opacity: 1;
+    width: 60%;
+    background-color: #3F16B4; 
+    border-radius: 20px;
+    position: absolute;
+    /* top: 50%;
+    left: 50%; */
+    transform: translate(-50%,-50%);
+    text-align: center;
+    padding: 10%;
+    transition: opacity 0.3s ease-in-out;
+}
+  
+  

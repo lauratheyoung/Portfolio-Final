@@ -31,7 +31,7 @@
                 <!-- <button class="close-button">&times;</button> -->
             </div>
         
-            <form id="userWorkoutForm">
+            <form action= "" id="userWorkoutForm">
         
                 <div class="form-group">
                     <label for="date" id="date-label">Date:</label>
@@ -72,10 +72,21 @@
                         <option value="Side Swing">Side Swing</option>
                     </select>
                 </div>
+
+                <input type="submit" value="Save Workout">
         
-                <button type="submit" id="formSave">Save Workout</button>
+                <!-- <button type="submit" id="formSave">Save Workout</button> -->
+                
+                <!-- adding a congrats pop-up window -> need to add timeout functions so as not to annoy users -->
+
+                <div class = "congrats-popup" id = "congrats">
+                    <img class= "congrats-window-asset" id="congrats-asset" src="assets/congrats-popup.jpg">
+                    <h2 class="congrats-message" id ="congrats-main-message" >Congradulations on finishing a workout!</h2>
+                    <h3 class="congrats-submessage" id=" congrats-sub-message">Keep up the good work!</h3>
+                </div>
         
             </form>
+
         </div>
         
     </div>
@@ -108,5 +119,5 @@
         <img id= "logo" src="/public/assets/logo.jpg">
     </div>
     <!-- need to add high resolution images for the final -->
+    <script src="/public/script.js"></script>
 </body>
-<script src="/public/script.js"></script>
