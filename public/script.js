@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const addWorkoutButton = document.querySelector('#addWorkout');
   const form = document.querySelector('#form');
   const formGroup = document.getElementById('userWorkoutForm');
+  const popupContainer = document.querySelector('.congrats-popup');
   const popup = document.getElementById('congrats');
   const overlay = document.getElementById('overlay');
   const workoutHistoryButton = document.querySelector('#workoutHistory');
@@ -105,7 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const openForm = () => {
     form.classList.add('active');
-    overlay.classList.add('active');
     if (!formCloseButton) {
       formCloseButton = document.createElement('button');
       formCloseButton.classList.add('close-button');
@@ -113,6 +113,9 @@ document.addEventListener('DOMContentLoaded', () => {
       formCloseButton.addEventListener('click', closeForm);
       overlay.appendChild(formCloseButton);
     }
+    
+    overlay.classList.add('active');
+    
   };
 
   // open workout history functionality
@@ -151,7 +154,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (formCloseButton) {
       formCloseButton.remove();
       formCloseButton = null;
+      
     }
+    
   };
 
   const closeWorkoutHistory = () => {
@@ -163,7 +168,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  
+  function openPopup() {
+    overlay.classList.add('active');
+    popupContainer.classList.add("active");
+    
+  }
+
+  function closePopup() {
+    popupContainer.classList.remove("active");
+    overlay.classList.remove('active');
+  }
   
   // add workout button functionality
   addWorkoutButton.addEventListener('click', () => {
@@ -200,26 +214,27 @@ document.addEventListener('DOMContentLoaded', () => {
     createWorkoutElement({ workoutDate, startTime, endTime, easy, moderate, difficult, style });
     // Store form data in local storage
     localStorage.setItem('workoutData', JSON.stringify(workout));
-   
-    closeForm();
+  
     formGroup.reset();
-    
-    
-  //   const openPopup = () => {
-  //     popup.classList.add('active');
-  //     overlay.classList.add('active');
-  //   }
-    
-  //   openPopup();
+    openPopup();
 
-  //   setTimeout(() => {
-  //     closePopup();
-  //   }, 3000);
-  // });
+    setTimeout(() => {
+      closePopup();
+    }, 3000);
 
-  // function closePopup(){
-  //   popup.classList.remove('active');
-  //   overlay.classList.remove('active');
-  // }
+    closeForm();
+
+    
+
   });
-})
+
+  
+
+  
+
+  
+
+
+});
+    
+

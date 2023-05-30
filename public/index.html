@@ -31,7 +31,7 @@
                 <!-- <button class="close-button">&times;</button> -->
             </div>
         
-            <form action= "" id="userWorkoutForm">
+            <form id="userWorkoutForm">
         
                 <div class="form-group">
                     <label for="date" id="date-label">Date:</label>
@@ -73,25 +73,35 @@
                     </select>
                 </div>
 
-                <input type="submit" value="Save Workout">
+                <input type="submit" value="Save Workout" onclick = "openPopup()"/>
         
                 <!-- <button type="submit" id="formSave">Save Workout</button> -->
                 
                 <!-- adding a congrats pop-up window -> need to add timeout functions so as not to annoy users -->
 
-                <div class = "congrats-popup" id = "congrats">
-                    <img class= "congrats-window-asset" id="congrats-asset" src="assets/congrats-popup.jpg">
-                    <h2 class="congrats-message" id ="congrats-main-message" >Congradulations on finishing a workout!</h2>
-                    <h3 class="congrats-submessage" id=" congrats-sub-message">Keep up the good work!</h3>
-                </div>
+
+                
+    
         
             </form>
 
+            
+            
         </div>
         
     </div>
     
     <div id="overlay"></div>
+
+    <div class = "congrats-popup" id="popupContainer">
+        <div class = "congrats-popup-content" id = "congrats">
+            <img class= "congrats-popup-asset" id="congrats-asset" src="/public/assets/congrats-popup.jpg">
+            <div id="congrats-popup-text">
+                <h2 class="congrats-popup-message" id ="congrats-main-message" >Congradulations on finishing a workout!</h2>
+                <h3 class="congrats-popup-submessage" id="congrats-sub-message">Keep up the good work!</h3>
+            </div>
+        </div>
+    </div>
     
     <div class = "workoutHistoryLayout" id="workoutHistoryContainer">
         <!-- <button id = "close-button" >&times;</button> -->
@@ -106,12 +116,12 @@
     </div>
 
     <div class="" id="streaksContainer" script="">
-        <img id= "streaksIcon" src="/public/assets/streaks-DECO2017.jpg"></img>
+        <img id= "streaksIcon" src="/public/assets/streaks-DECO2017.jpg">
         <!-- custom function that counts consecutive workout entries and outputs an integer in the home-page streaks icon-->
     </div>
 
     <div id="characterContainer">
-        <img id= "character" src="/public/assets/character-icon.jpg"></img>
+        <img id= "character" src="/public/assets/character-icon.jpg">
         <!-- a animated character jumping -->
     </div>
 
