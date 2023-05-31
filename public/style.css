@@ -58,25 +58,48 @@
     
 }
 
-#streaksContainer{
+#streakBadge {
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     border: 2px solid orchid;
-    width: 15vw;
-    height: 30vh;
+    width: 30vw;
+    height: 45vh;
     right: 0;
     bottom: 0;
-    justify-content: center;
-
-
+    font-family: 'Milky Nice', sans-serif;
+    color: black;
+    z-index: 60;
 }
-
-#streaksIcon{
+  
+#streakNumber {
+    font-size: 4.5rem;
     position: relative;
-    top: 3%;
-    left: 11%;
+    margin-top: 35%;
+    margin-bottom: 0%;
     z-index: 1;
+}
+
+#streakTitle {
+    font-size: 2rem;
+    position: relative;
+    margin-top: 4
+    %;
+    z-index: 60;
 
 }
+  
+#streaksIcon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+  
+  
 
 
 #characterContainer{
@@ -356,3 +379,6 @@ input[type="checkbox"] {
     padding: 3%;
 }
   
+
+
+

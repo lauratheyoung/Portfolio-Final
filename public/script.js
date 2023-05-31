@@ -7,10 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const popupContainer = document.querySelector('.congrats-popup');
   const popup = document.getElementById('congrats');
   const overlay = document.getElementById('overlay');
+  const streakBadge = document.getElementById('streakBadge');
   const workoutHistoryButton = document.querySelector('#workoutHistory');
   const workoutCardContainer = document.querySelector("#entryCard");
   let workout = [];
-
 
   // Load workout data from local storage
   const storedWorkoutData = localStorage.getItem('workoutData');
@@ -22,6 +22,84 @@ document.addEventListener('DOMContentLoaded', () => {
       workout.push(parsedWorkoutData);
     }
   }
+
+  function checkConsecutiveWorkout() {
+    // Get the current date
+    const currentDate = new Date();
+    let consecutiveWorkouts = true;
+    let streak = 0;
+
+    // Retrieve the workout entries from local storage
+    const storedWorkoutData = localStorage.getItem('workoutData');
+    if (storedWorkoutData) {
+      const parsedWorkoutData = JSON.parse(storedWorkoutData);
+      if (Array.isArray(parsedWorkoutData)) {
+        workout = parsedWorkoutData;
+      } else {
+        workout = [parsedWorkoutData];
+      }
+    }
+
+    // Check if there are any workout entries
+    if (workout.length === 0) {
+      consecutiveWorkouts = false;
+    } else {
+      // Iterate through the workout array starting from the most recent entry
+      for (let i = workout.length - 1; i >= 0; i--) {
+        const workoutDate = new Date(workout[i].workoutDate);
+
+        // Calculate the time difference in milliseconds
+        const timeDiff = currentDate.getTime() - workoutDate.getTime();
+
+        // Calculate the difference in days
+        const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
+
+        // If the workout date is not the same as the current date or the previous day, break the loop
+        if (daysDiff !== 0 && daysDiff !== 1) {
+          consecutiveWorkouts = false;
+          break;
+        }
+
+        // Update the current date for the next iteration
+        currentDate.setDate(currentDate.getDate() - 1);
+        streak++;
+      }
+    }
+
+    if (consecutiveWorkouts) {
+      // Update streak and save it to local storage
+      localStorage.setItem('workoutStreak', streak);
+    } else {
+      // If there was a break in the workouts, reset the streak to 0
+      localStorage.setItem('workoutStreak', 0);
+    }
+
+    return streak; // Return the streak value
+  }
+
+  function streakDisplay() {
+    const streakBadge = document.getElementById('streakBadge');
+    const renderedInt = document.createElement('h1');
+    renderedInt.id= "streakNumber";
+    const streakTitle = document.createElement('h2');
+    streakTitle.id= "streakTitle";
+    const badgeIcon = document.createElement('img');
+
+    // Retrieve the streak count from local storage
+    const streak = checkConsecutiveWorkout();
+
+    renderedInt.textContent = streak;
+    streakTitle.textContent = streak === 1 ? 'streak' : 'streaks'; // Adjust the label based on the streak count
+
+    badgeIcon.id = 'streaksIcon';
+    badgeIcon.src = '/public/assets/streaks-DECO2017.jpg';
+
+    streakBadge.innerHTML = ''; // Clear previous content
+    streakBadge.append(renderedInt, streakTitle, badgeIcon);
+  }
+
+  streakDisplay();
+
 
   // taking in workout entry data and creating an entry object to store using localStorage & using JSON to condense data into string
 
@@ -229,6 +307,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   
+  function workoutEntryDisplay () {}
+  
+  // streak checker
+  checkConsecutiveWorkout();
 
   
 
