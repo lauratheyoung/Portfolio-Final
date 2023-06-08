@@ -71,7 +71,7 @@
     bottom: 0;
     font-family: 'Milky Nice', sans-serif;
     color: black;
-    z-index: 60;
+    z-index: 5;
 }
   
 #streakNumber {
@@ -86,7 +86,7 @@
     font-size: 2rem;
     position: relative;
     margin-top: 4%;
-    z-index: 60;
+    z-index: 5;
 
 }
   
@@ -149,6 +149,8 @@
 /* debug: animation for the skipping character. Additionally, add new asset for jump rope and make custom animation for new image */
 
 
+
+
 #logoContainer{
     border: 2px solid cadetblue;
     width: 10vw;
@@ -198,6 +200,115 @@
     
 }
 
+.detailed-card {
+    display: none;
+    opacity: 0;
+    
+}
+  
+.detailed-card.active {
+    display: block;
+    opacity: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+}
+  
+#detailed-card-layout {
+    background-color: white;
+    border: 2px solid red;
+    width: 90vw;
+    max-width: 800px;
+    height: 80vh;
+    max-height: 800px;
+    padding: 10%;
+    justify-content: center;
+    z-index: 1000;
+    font-family: 'Milky Nice', sans-serif;
+}
+
+
+  
+@media (max-width: 768px) {
+    #detailed-card-layout.active {
+      width: 95vw;
+      height: 70vh;
+      max-height: 500px;
+      padding: 10px;
+    }
+}
+  
+@media (max-width: 576px) {
+    #detailed-card-layout.active {
+      width: 95vw;
+      height: 60vh;
+      max-height: 400px;
+      padding: 10px;
+    }
+}
+
+
+#skip-rope-asset {
+    z-index: 1050;
+    position: absolute;
+    border: 2px solid salmon;
+    width: 55%;
+    height: 85%;
+    top: 0;
+    right: 0;
+
+
+}
+
+#detailedCardTitleContainer {
+    font-size: 1.6rem;
+    margin-right: 55%;
+    background-color: #A862EF;
+    width: 50%;
+    padding: 3%;
+    border-radius: .6em;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+  }
+  
+
+#detailedCardInfoContainer {
+    font-size: 1.1rem;
+    margin-top: 15%;
+    background-color: #E0C1FF;
+    border-radius: .6em;
+    width: 50%;
+    padding: 3%;
+    display: block; 
+    justify-content: center; 
+    align-items: center; 
+
+}
+
+/* #prevBtn {
+    background-color: #E99FF6;
+    border: 2px solid plum;
+    width: 20%;
+    height: 25%;
+    z-index: 1030;
+    border-radius: 0.4em;
+    
+
+}
+
+#nextBtn{
+    background-color: #E99FF6;
+    width: 20%;
+    height: 25%;
+    z-index: 1031;
+    border-radius: 0.4em;
+
+} */
+
+
 .form-header{
     padding: 10px 15px;
     display: flex;
@@ -231,6 +342,8 @@
 
 #overlay{
     position: absolute;
+    width: 100%;
+    height: 400%;
     opacity: 0;
     top: 0;
     left: 0;
@@ -306,11 +419,9 @@ input[type="checkbox"] {
 
 
 #workoutHistoryContainer{
-    display: grid;
-    position: relative;
-    /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 5%; */
+    display: flex;
 }
+
 
 .entryCard {
     background-color: #E0C1FF;

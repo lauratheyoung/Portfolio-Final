@@ -13,13 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('#form');
   const formGroup = document.getElementById('userWorkoutForm');
   const popupContainer = document.querySelector('.congrats-popup');
-  const popup = document.getElementById('congrats');
   const overlay = document.getElementById('overlay');
   const streakBadge = document.getElementById('streakBadge');
   const workoutHistoryButton = document.querySelector('#workoutHistory');
   const workoutCardContainer = document.querySelector("#entryCard");
-  let calories;
-  let duration;
+  const detailedCardLayout = document.querySelector('.detailed-card');
+  const renderedInt = document.createElement('h1');
+  renderedInt.id = "streakNumber";
   let workout = [];
   
 
@@ -76,31 +76,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const streakDisplay = () => {
-    
-    const renderedInt = document.createElement('h1');
-    renderedInt.id= "streakNumber";
     const streakTitle = document.createElement('h2');
-    streakTitle.id= "streakTitle";
+    streakTitle.id = 'streakTitle';
     const badgeIcon = document.createElement('img');
-
+  
     // Retrieve the streak count from local storage
     const streak = checkConsecutiveWorkout();
-
+  
     renderedInt.textContent = streak;
     streakTitle.textContent = streak === 1 ? 'streak' : 'streaks'; // Adjust the label based on the streak count
-
+  
     badgeIcon.id = 'streaksIcon';
     badgeIcon.src = '/public/assets/streaks-DECO2017.jpg';
-
+  
     streakBadge.innerHTML = ''; // Clear previous content
     streakBadge.append(renderedInt, streakTitle, badgeIcon);
   };
+  
 
-  streakDisplay()
+  streakDisplay();
 
   const calculateDuration = (startTime, endTime) => {
-    const start = startTime.split(':');
-    const end = endTime.split(':');
+    const start = startTime ? startTime.split(':') : [];
+    const end = endTime ? endTime.split(':') : [];
+
+    // check the variable has a value before splitting
   
     // Extract hours and minutes
     const startHours = parseInt(start[0]);
@@ -115,22 +115,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Calculate duration in minutes
     const durationMinutes = endTotalMinutes - startTotalMinutes;
   
-    console.log('Duration: ' + durationMinutes + " minutes");
+    // console.log('Duration: ' + durationMinutes + " minutes");
   
     return durationMinutes;
   };
   
 
   const calculateCalories = (style, easy, moderate, difficult, duration) => {
-    let calories;
-    console.log('Style:', style);
-    console.log('Easy:', easy);
-    console.log('Moderate:', moderate);
-    console.log('Difficult:', difficult);
-    console.log('Duration:', duration);
-  
+    let calories = 0;
+    
     if (style === 'Single-Unders') {
-      console.log('Calculating calories for Single-Unders');
+      // console.log('Calculating calories for Single-Unders');
       if (easy === true) {
         calories = 12 * duration;
       } else if (moderate === true) {
@@ -139,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
         calories = 23 * duration;
       }
     } else if (style === 'Double-Unders') {
-      console.log('Calculating calories for Double-Unders');
+      // console.log('Calculating calories for Double-Unders');
       if (easy === true) {
         calories = 20 * duration;
       } else if (moderate === true) {
@@ -148,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
         calories = 33 * duration;
       }
     } else if (style === 'Crosses') {
-      console.log('Calculating calories for Crosses');
+      // console.log('Calculating calories for Crosses');
       if (easy === true) {
         calories = 17.5 * duration;
       } else if (moderate === true) {
@@ -157,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
         calories = 28.5 * duration;
       }
     } else if (style === 'Single-Legs') {
-      console.log('Calculating calories for Single-Legs');
+      // console.log('Calculating calories for Single-Legs');
       if (easy === true) {
         calories = 13 * duration;
       } else if (moderate === true) {
@@ -166,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
         calories = 24 * duration;
       }
     } else if (style === 'Alternative Single-Legs') {
-      console.log('Calculating calories for Alternative Single-Legs');
+      // console.log('Calculating calories for Alternative Single-Legs');
       if (easy === true) {
         calories = 15 * duration;
       } else if (moderate === true) {
@@ -175,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
         calories = 36 * duration;
       }
     } else if (style === 'High Knees') {
-      console.log('Calculating calories for High Knees');
+      // console.log('Calculating calories for High Knees');
       if (easy === true) {
         calories = 17.5 * duration;
       } else if (moderate === true) {
@@ -184,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
         calories = 28.5 * duration;
       }
     } else if (style === 'Side-Swing') {
-      console.log('Calculating calories for Side-Swing');
+      // console.log('Calculating calories for Side-Swing');
       if (easy === true) {
         calories = 15 * duration;
       } else if (moderate === true) {
@@ -193,19 +188,20 @@ document.addEventListener('DOMContentLoaded', () => {
         calories = 26 * duration;
       }
     }
-    console.log('Calories:', calories);
+    // console.log('Calories:', calories);
 
     return calories;
   };
   
-  
-  
-
 
   // taking in workout entry data and creating an entry object to store using localStorage & using JSON to condense data into string
 
   const addWorkoutEntry = ( workoutDate, startTime, endTime, easy, moderate, difficult, style) => {
 
+    const durationValue = calculateDuration(startTime, endTime);
+    const caloriesValue = calculateCalories(style, easy, moderate, difficult, durationValue);
+
+    
     const entry = {
       workoutDate,
       startTime,
@@ -214,17 +210,10 @@ document.addEventListener('DOMContentLoaded', () => {
       moderate,
       difficult,
       style,
-      duration,
-      calories
+      durationValue, 
+      caloriesValue
     };
-
-    // Calculate the duration in minutes
-    entry.duration = calculateDuration(entry.startTime, entry.endTime);
-    console.log(entry.duration);
-
-    // Calculate the calories
-    entry.calories = calculateCalories(entry.style, entry.easy, entry.moderate, entry.difficult, entry.duration);
-    console.log(entry.calories);
+    
 
     workout.push(entry);
     localStorage.setItem('workoutData', JSON.stringify(workout));
@@ -254,9 +243,13 @@ document.addEventListener('DOMContentLoaded', () => {
   
   
   console.log(latestEntry);
+  
+  
 
 
-  const createWorkoutElement = ({ workoutDate, startTime, endTime, easy, moderate, difficult, style }) => {
+  const createWorkoutElement = (entry, duration, calories) => {
+    const { workoutDate, startTime, endTime, easy, moderate, difficult, style } = entry;
+  
     // Create card container
     const cardContainer = document.createElement('div');
     cardContainer.classList.add('entryCard');
@@ -270,6 +263,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const workoutEndTimeElement = document.createElement('p');
     const difficultyLevelElement = document.createElement('p');
     const workoutJumpTypeElement = document.createElement('p');
+    const durationElement = document.createElement('p');
+    const caloriesElement = document.createElement('p');
   
     // Set text content
     workoutDateElement.innerText = "Workout Date: " + workoutDate;
@@ -277,6 +272,8 @@ document.addEventListener('DOMContentLoaded', () => {
     workoutEndTimeElement.innerText = "End-time: " + endTime;
     difficultyLevelElement.innerText = "Workout Difficulty: " + getDifficultyLevel(easy, moderate, difficult);
     workoutJumpTypeElement.innerText = "Jump-Type: " + style;
+    durationElement.innerText = "Duration: " + duration + " minutes";
+    caloriesElement.innerText = "Calories: " + calories;
   
     // Set text color
     workoutDateElement.style.color = 'black';
@@ -284,24 +281,166 @@ document.addEventListener('DOMContentLoaded', () => {
     workoutEndTimeElement.style.color = 'black';
     difficultyLevelElement.style.color = 'black';
     workoutJumpTypeElement.style.color = 'black';
+
+
+
   
     // Append text elements to card container
-    cardContainer.append(workoutDateElement, workoutStartTimeElement, workoutEndTimeElement, difficultyLevelElement, workoutJumpTypeElement);
+    cardContainer.append(workoutDateElement, workoutStartTimeElement, workoutEndTimeElement, difficultyLevelElement, workoutJumpTypeElement, durationElement, caloriesElement);
+  
+    // Add event listener to the card container
+    cardContainer.addEventListener('click', () => {
+      openDetailedCard(entry);
+    });
   
     // Append card container to workout card container
     workoutCardContainer.appendChild(cardContainer);
-    workoutCardContainer.style.display = "none";
-  
-    // Apply styling to dynamically generated cards
-    
+
     workoutCardContainer.style.flexWrap = "wrap";
     workoutCardContainer.style.justifyContent = "space-between";
   };
-  
 
-  // open workout history functionality
+  // const showPreviousEntry = (currentEntry) => {
+  //   const previousCard = currentEntry.previousElementSibling;
+  //   if (previousCard) {
+  //     previousCard.style.display = 'block';
+  //     currentEntry.style.display = 'none';
+  //   }
+  // };
+  
+  // const showNextEntry = (currentEntry) => {
+  //   const nextCard = currentEntry.nextElementSibling;
+  //   if (nextCard) {
+  //     nextCard.style.display = 'block';
+  //     currentEntry.style.display = 'none';
+  //   }
+  // };
+
+
+  // add function that dynamically renders a detailed card display and specific entry selected
+
+  const createDetailedCardLayout = (container, entry) => {
+    // create the detailed card container
+    const detailedCardContainer = document.createElement('div');
+    detailedCardContainer.classList.add('detailedCard');
+  
+    // title container
+    const detailedCardTitleContainer = document.createElement('div');
+    detailedCardTitleContainer.classList.add('detailedCard');
+    detailedCardTitleContainer.setAttribute('id', 'detailedCardTitleContainer');
+  
+    // information container
+    const detailedCardInfoContainer = document.createElement('div');
+    detailedCardInfoContainer.classList.add('detailedCard');
+    detailedCardInfoContainer.setAttribute('id', 'detailedCardInfoContainer')
+  
+  
+  
+    // Create previous and next buttons
+    // const previousButton = document.createElement('button');
+    // previousButton.textContent = 'Prev';
+    // previousButton.setAttribute('id', 'prevBtn');
+    // previousButton.addEventListener('click', () => {
+    //   // Handle previous button click
+    //   showPreviousEntry(detailedCardContainer);
+    // });
+
+    // const nextButton = document.createElement('button');
+    // nextButton.textContent = 'Next';
+    // nextButton.setAttribute('id', 'nextBtn');
+    // nextButton.addEventListener('click', () => {
+    //   // Handle next button click
+    //   showNextEntry(detailedCardContainer);
+    // });
+
+
+    // Calculate the duration in minutes
+    const duration = calculateDuration(entry.startTime, entry.endTime);
+
+    // Calculate the calories
+    const calories = calculateCalories(entry.style, entry.easy, entry.moderate, entry.difficult, duration);
+  
+    // create the content elements
+    const workoutDateElement = document.createElement('h2');
+    workoutDateElement.textContent = 'Workout Date: ' + entry.workoutDate;
+  
+    const durationElement = document.createElement('p');
+    durationElement.textContent = 'Workout Duration: ' + duration + " minutes";
+  
+    const caloriesElement = document.createElement('p');
+    caloriesElement.textContent = 'Calories Burnt: ' + calories;
+  
+    const difficultyLevelElement = document.createElement('p');
+    difficultyLevelElement.textContent = 'Difficulty Level: ' + getDifficultyLevel(entry.easy, entry.moderate, entry.difficult);
+  
+    const jumpStyleElement = document.createElement('p');
+    jumpStyleElement.textContent = 'Jump Style: ' + entry.style;
+  
+    // Append the content to specific container divs
+    detailedCardTitleContainer.append(workoutDateElement);
+    detailedCardInfoContainer.append(durationElement, caloriesElement, difficultyLevelElement, jumpStyleElement);
+
+    // image
+    const skipRopeImage = document.createElement('img');
+    skipRopeImage.classList.add('skip-rope-image');
+    skipRopeImage.setAttribute('src', '/public/assets/skiprope.png');
+    detailedCardContainer.appendChild(skipRopeImage);
+    skipRopeImage.setAttribute('id', 'skip-rope-asset');
+  
+    // Append the content to the container element
+    detailedCardContainer.append(detailedCardTitleContainer, detailedCardInfoContainer, previousButton, nextButton);
+
+    // Append the detailed card container to the provided container element
+    container.appendChild(detailedCardContainer);
+  
+    return detailedCardContainer;
+  };
+
+
+  
   let formCloseButton = null;
   let workoutHistoryCloseButton = null;
+  let detailedCardCloseButton = null;
+  
+
+  const openDetailedCard = (entry) => {
+    // Clear the existing content of detailedCardLayout
+    detailedCardLayout.innerHTML = '';
+  
+    // Create the detailed card layout
+    const detailedCardContainer = createDetailedCardLayout(detailedCardLayout, entry);
+  
+    // Append the detailed card container to detailedCardLayout
+    detailedCardLayout.appendChild(detailedCardContainer);
+  
+    // Add 'active' class to detailedCardLayout and overlay
+    detailedCardLayout.classList.add('active');
+    overlay.classList.add('active');
+
+    workoutHistoryCloseButton
+  };
+  
+
+  // Function to close the detailed card
+  const closeDetailedCard = () => {
+    // Hide the detailed card window
+    detailedCardLayout.classList.remove('active');
+    
+    // Remove event listener from document
+    document.removeEventListener('click', handleOutsideClick);
+
+  
+  };
+
+  // Function to handle clicks outside the detailed card window
+  const handleOutsideClick = (event) => {
+    if (!detailedCard.contains(event.target)) {
+      closeDetailedCard();
+    }
+  };
+
+  
+  // open workout history functionality
 
   const openForm = () => {
     form.classList.add('active');
@@ -326,10 +465,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (Array.isArray(workout)){
         workout.forEach((entry) => {
-          createWorkoutElement(entry);
-      });
+          const duration = calculateDuration(entry.startTime, entry.endTime);
+          const calories = calculateCalories(entry.style, entry.easy, entry.moderate, entry.difficult, duration);
+          createWorkoutElement(entry, duration, calories);
+        });
     } else{
-        createWorkoutElement(workout);
+        createWorkoutElement(workout, workout.duration, workout.calories);
       }
 
     }
@@ -364,6 +505,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (workoutHistoryCloseButton) {
       workoutHistoryCloseButton.remove();
       workoutHistoryCloseButton = null;
+      closeDetailedCard();
     }
   };
 
@@ -395,6 +537,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const moderate = document.getElementById('moderate-input').checked;
     const difficult = document.getElementById('difficult-input').checked;
     const style = formGroup.elements['user-jump-types'].value;
+    const duration = calculateDurations(startTime, endTime);
+    const calories = calculateCalories(style, easy, moderate, difficult, duration);
     
     console.log('Workout Date:', workoutDate);
     console.log('Start Time:', startTime);
@@ -404,9 +548,9 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Difficult:', difficult);
     console.log('Style:', style);
   
-    addWorkoutEntry(workoutDate, startTime, endTime, easy, moderate, difficult, style);
+    addWorkoutEntry(workoutDate, startTime, endTime, easy, moderate, difficult, style, duration, calories);
     
-    createWorkoutElement({ workoutDate, startTime, endTime, easy, moderate, difficult, style });
+    createWorkoutElement({ workoutDate, startTime, endTime, easy, moderate, difficult, style }, duration, calories);
     // Store form data in local storage
     localStorage.setItem('workoutData', JSON.stringify(workout));
   
@@ -423,8 +567,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   });
 
-  
-  function workoutEntryDisplay () {}
+
   
   // streak checker
   checkConsecutiveWorkout();
