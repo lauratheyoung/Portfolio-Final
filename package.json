@@ -15,8 +15,7 @@
   "author": "Laura Young",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1",
-    "use-streak": "^1.0.4"
+    "express": "^4.17.1"
   },
   "alias": {
     "process": false

@@ -2,35 +2,52 @@
 
 
 
-.welcome-message-main{
-    border: 2px solid red;
-    width: 30vw;
-    height: 7vh;
+:root {
+    --primary-color: #EF6262;
+    --secondary-color: red;
+    --border-radius: 30px;
+    --container-width: 30vw;
+    --container-height: 15vh;
+}
+  
+
+.welcome-message-main {
+    width: var(--container-width);
+    height: var(--container-height);
     position: absolute;
     left: 10%;
-    top: 20%;
-    background-color: #EF6262;
-    border-radius: 30px;
-}
-.welcome-message-main h1{
-    font-family: 'Milky Nice', sans-serif;
-    position: relative;
+    top: 22%;
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius);
+    z-index: 29;
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 2.3rem;
-    bottom: 35%;
+    justify-content: center;
+    overflow: hidden;
 }
+  
+.welcome-message-main h1 {
+    font-family: 'Milky Nice', sans-serif;
+    font-size: 3vw; /* Adjust the value as per your preference */
+    margin: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+  
+  
+  
+
+
 /* debug: pixel perfect text alignment */
 
 #buttonContainer{
     position: absolute;
-    border: 2px solid cyan;
     width: 30vw;
     height: 55vh;
     display: block;
     left: 10%;
-    top: 35%;
+    top: 40%;
 
 }
 
@@ -47,47 +64,50 @@
 #addWorkout{
     position: relative;
     background-color: #FF9A28;
-    filter: drop-shadow(0 0.2rem 0.4rem #160c01)
+    filter: drop-shadow(0 0.2rem 0.4rem #160c01);
+    z-index: 30;
 }
 
 #workoutHistory{
     position: relative;
     top: 10%;
     background-color: #A862EF;
-    filter: drop-shadow(0 0.2rem 0.4rem #10031c)
+    filter: drop-shadow(0 0.2rem 0.4rem #10031c);
+    z-index: 31;
     
 }
 
 #streakBadge {
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 2px solid orchid;
     width: 30vw;
     height: 45vh;
     right: 0;
     bottom: 0;
     font-family: 'Milky Nice', sans-serif;
     color: black;
-    z-index: 5;
+    z-index: 9;
 }
   
 #streakNumber {
     font-size: 4.5rem;
-    position: relative;
-    margin-top: 35%;
-    margin-bottom: 0%;
-    z-index: 1;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 11;
 }
-
+  
 #streakTitle {
     font-size: 2rem;
-    position: relative;
-    margin-top: 4%;
-    z-index: 5;
-
+    position: absolute;
+    top: calc(50% + 1.5rem); 
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 12;
 }
   
 #streaksIcon {
@@ -95,14 +115,13 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 0;
+    z-index: 10;
 }
-  
   
 
 
 #characterContainer{
-    border: 2px solid slateblue;
+    /* border: 2px solid slateblue; */
     width: 35vw;
     height: 110vh;
     position: absolute;
@@ -112,61 +131,45 @@
 
 }
 
-#character{
-    width: 100%;
-    right: 0;
-    position: relative;
-    /* animation: bounce 0.5s infinite;
-    animation-timing-function: ease-in-out;
-    animation-delay: 0.6s; */
-}
-/* bouncing animation idea needs to be improved and refined also need to add a stop */
-/* @keyframes bounce{
-    10%{
-        height: 100%;
-        width: 100%;
-    }
-    30%{
-        height: 100%;
-        width: 100%;
-    }
-    50%{
-        height: 100%;
-        width: 100%
-        transform: translateY(40%);
-    }
-    
-    75%{
-        height: 100%;
-        width: 100%;
-    }
-    
-    100%{
-        transform: translateY(0);
-    }
-} */
-
-/* debug: animation for the skipping character. Additionally, add new asset for jump rope and make custom animation for new image */
-
-
-
-
-#logoContainer{
-    border: 2px solid cadetblue;
-    width: 10vw;
-    height: 20vh;
-    position: absolute;
-    
+#character {
+    position: fixed;
+    bottom: 0;
+    right: 10%;
+    max-width: 85%;
+    max-height: 95%;
+    height: auto;
 }
 
-#logo{
+@media (max-width: 767px) {
+    #character {
+        #character {
+            width: 100%;
+            transform: scale(0.5);
+        }
+     
+    }
+}
+  
+
+
+
+#logoContainer {
+    width: 20vw;
+    height: 30vh;
+    top: 0;
+    position: fixed;
+}
+  
+#logo {
     width: 100%;
     height: 100%;
+    top: 0;
     position: relative;
     display: flex;
     justify-content: center;
-    /* image itself is off-center need to import better quality graphics */
+    object-fit: contain;
 }
+  
 
 *,*::after, *::before{
     box-sizing: border-box;
@@ -179,12 +182,12 @@
     left: 50%;
     transform: translate(-50%,-50%) scale(0);
     transition: 200ms ease-in-out;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     border-radius: 30px;
-    z-index: 30;
+    z-index: 70;
     background-color:#ffff;
-    width: 50vw;
-    height: 70vh;
+    width: 55vw;
+    height: 60vh;
     max-width: 80%;
 
 
@@ -209,7 +212,7 @@
 .detailed-card.active {
     display: block;
     opacity: 1;
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -218,7 +221,7 @@
   
 #detailed-card-layout {
     background-color: white;
-    border: 2px solid red;
+    /* border: 2px solid red; */
     width: 90vw;
     max-width: 800px;
     height: 80vh;
@@ -253,7 +256,7 @@
 #skip-rope-asset {
     z-index: 1050;
     position: absolute;
-    border: 2px solid salmon;
+    /* border: 2px solid salmon; */
     width: 55%;
     height: 85%;
     top: 0;
@@ -277,7 +280,7 @@
 
 #detailedCardInfoContainer {
     font-size: 1.1rem;
-    margin-top: 15%;
+    margin-top: 10%;
     background-color: #E0C1FF;
     border-radius: .6em;
     width: 50%;
@@ -288,33 +291,13 @@
 
 }
 
-/* #prevBtn {
-    background-color: #E99FF6;
-    border: 2px solid plum;
-    width: 20%;
-    height: 25%;
-    z-index: 1030;
-    border-radius: 0.4em;
-    
-
-}
-
-#nextBtn{
-    background-color: #E99FF6;
-    width: 20%;
-    height: 25%;
-    z-index: 1031;
-    border-radius: 0.4em;
-
-} */
-
 
 .form-header{
     padding: 10px 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 10px solid #FF9A28;
+    /* border-bottom: 10px solid #FF9A28; */
 }
 
 .form-header .form-title{
@@ -323,14 +306,6 @@
 
 }
 
-/* .form-header .close-button {
-    cursor: pointer;
-    border: none;
-    outline: none;
-    background: none;
-    font-size: 1.25rem;
-    font-weight: bold;
-} */
 
 #userWorkoutForm {
     padding: 10px 15px;
@@ -351,7 +326,7 @@
     bottom: 0;
     background-color: rgba(0,0,0,.5);
     transition: 200ms ease-in-out;
-    z-index: 10;
+    z-index: 40;
     pointer-events: none; 
     /* removes functionality to rest of page */
 }
@@ -399,24 +374,42 @@ input[type="checkbox"] {
     margin-top: 1rem;
 }
 
-
-
-#formSave {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 25%;
-    height: 10%;
-    margin-top: 10%;
-    margin-left: 33%;
-    border-radius: 5px;
-    font-family: 'Milky Nice', sans-serif;
-    font-size: 1.1rem;
+input[type = 'submit']{
+    width: 50%;
+    height: 60px;
+    display: block;
+    margin: 20px auto;
     background-color: #EECE5C;
-
+    font-family: 'Milky Nice', sans-serif;
+    font-size: 1.2rem;
 }
 
+@media only screen and (max-width: 600px) {
+    .form-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .form-header .form-title {
+      margin-bottom: 10px;
+    }
+  
+    .form-group,
+    .difficulty-options {
+        display: inline-flexbox;
+        flex-direction: column;
+        margin-bottom: 2%;
+    }
+  
+    label {
+      padding: 0.5rem;
+    }
+  
+    input[type='submit'] {
+      width: 100%;
+      margin-top: 20px;
+    }
+}
 
 #workoutHistoryContainer{
     display: flex;
@@ -432,8 +425,9 @@ input[type="checkbox"] {
     height: 18rem;
     margin: 10px;
     padding: 20px;
+    border-radius: 5%;
     box-sizing: border-box;
-    z-index: 20;
+    z-index: 45;
 }
   
 .entryCard > div {
@@ -468,7 +462,7 @@ input[type="checkbox"] {
     font-family: 'Milky Nice', sans-serif;
     font-size: 1.2rem;
     color: #333;
-    z-index: 30;
+    z-index:70;
 }
 
 .congrats-popup {
@@ -488,6 +482,10 @@ input[type="checkbox"] {
     background-color: white;
     padding: 3%;
 }
+  
+
+
+
   
 
 
